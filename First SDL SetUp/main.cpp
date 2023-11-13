@@ -1,4 +1,4 @@
-﻿
+
 #include <SDL.h>
 #include <fstream>
 #include <iostream>
@@ -110,7 +110,8 @@ int main(int argc, char* argv[])
 	SDL_Surface* loadingSurface = SDL_LoadBMP(imgName.c_str());
 
 	SDL_Texture* vikingTexture = SDL_CreateTextureFromSurface(mainRenderer, loadingSurface);
-
+	SDL_Texture* grid = loadTexture("grid.bmp");
+	
 	SDL_Event sdlEvent;
 
 	bool isRunning = true;
@@ -131,7 +132,7 @@ int main(int argc, char* argv[])
 				if (sdlEvent.key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
 
 					//isRunning = false;
-					SDL_Quit();
+					
 				}
 				break;
 
@@ -139,7 +140,6 @@ int main(int argc, char* argv[])
 
 				cout << sdlEvent.motion.x << " " << sdlEvent.motion.y << endl;
 
-				SDL_SetRenderDrawColor(mainRenderer, sdlEvent.motion.x, sdlEvent.motion.y, 100, 255);
 
 			default:
 				break;
@@ -150,22 +150,18 @@ int main(int argc, char* argv[])
 
 		}
 
-		SDL_RenderClear(mainRenderer);
-		SDL_RenderPresent(mainRenderer);
-
-
-	}
-
-	while (true)
-	{
-		SDL_RenderCopy(mainRenderer, vikingTexture, &srcRect, &dstRect);
+		SDL_RenderCopy(mainRenderer, grid, NULL, NULL);
 
 		SDL_RenderPresent(mainRenderer); // Draw the render
 
 
 		SDL_RenderClear(mainRenderer); // Clear what you have drawn
 		SDL_Delay(100); // Slow the program
+
+
 	}
+
+	
 
 	return 0;
 }
