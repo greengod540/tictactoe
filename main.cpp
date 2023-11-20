@@ -366,7 +366,7 @@ int main(int argc, char* argv[]) {
 			msdstRect.y = sdlEvent.motion.y;
 
 			for (int x = 1; x <= 9; x++) {
-				if (mousePosCheck(squarets[x], msdstRect.x, msdstRect.y, 100, 100)) {
+				if (mousePosCheck(squarets[x], msdstRect.x, msdstRect.y, 100, 0)) {
 					if (!square[x]) {
 						if (turn == 1) {
 							SDL_RenderCopy(mainRenderer, X, NULL, &msdstRect);
